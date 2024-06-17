@@ -22,6 +22,9 @@ public class Modelo {
         int numeroSorteado = (int) (Math.random() * 50 + 1);
         System.out.println("Número sorteado: " + numeroSorteado);
         isPrimeNumber(numeroSorteado);
+    }
+
+    public void printNumbers() {
         System.out.println("Números primos sorteados:");
         for (Integer num : numerosPrimos) {
             System.out.print(num + " - ");

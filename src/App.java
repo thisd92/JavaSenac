@@ -12,6 +12,7 @@ public class App {
             modelo.sorteioPrimo();
             cont++;
         }
+        modelo.printNumbers();
 
         scan.close();
     }

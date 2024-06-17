@@ -8,11 +8,10 @@ public class App {
         Modelo modelo = new Modelo();
 
         System.out.println("");
-        while (cont < 10) {
+        while (cont < 5) {
             modelo.sorteioPrimo();
             cont++;
         }
-        modelo.printNumbers();
 
         scan.close();
     }

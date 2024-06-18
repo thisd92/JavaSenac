@@ -5,9 +5,17 @@ import java.util.Random;
 
 public class Modelo {
 
-    int[] numerosPrimos = new int[20];
     Random random = new Random();
     ArrayList<Integer> nPrimos = new ArrayList<>();
+    ArrayList<Integer> nSorteados = new ArrayList<>();
+
+    public ArrayList<Integer> getnPrimos() {
+        return nPrimos;
+    }
+
+    public ArrayList<Integer> getnSorteados() {
+        return nSorteados;
+    }
 
     public boolean isPrimeNumber(int number) {
         int div = 0;
@@ -24,18 +32,21 @@ public class Modelo {
         return false;
     }
 
-    public void sorteio(int number) {
+    public ArrayList<Integer> sorteio(int number) {
+        ArrayList<Integer> numPrimos = new ArrayList<>();
+        nSorteados.clear();
         int i = 0;
         int num;
         while (i < number) {
             num = random.nextInt((100 - 30) + 1) + 30;
+            nSorteados.add(num);
             if (isPrimeNumber(num)) {
-                numerosPrimos[i] = num;
+                numPrimos.add(num);
                 nPrimos.add(num);
             }
-            System.out.println("Número sorteado: " + num);
             i++;
         }
+        return numPrimos;
     }
 
     public int random() {
@@ -43,17 +54,4 @@ public class Modelo {
         return number;
     }
 
-    public void printPrimos() {
-        for (int i = 0; i < numerosPrimos.length; i++) {
-            if (numerosPrimos[i] > 0) {
-                System.out.print(numerosPrimos[i] + " ");
-            }
-        }
-        System.out.println("");
-        for (int n : nPrimos) {
-            System.out.print(n + " ");
-        }
-        System.out.println("");
-
-    }
 }

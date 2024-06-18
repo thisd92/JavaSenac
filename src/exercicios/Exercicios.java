@@ -18,7 +18,6 @@ public class Exercicios {
         modelo.sorteio(qtdeNumeros);
         
         System.out.println("\nNúmeros primos sorteados:");
-        modelo.printPrimos();
         
         
         scan.close();

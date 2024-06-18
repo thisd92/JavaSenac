@@ -38,6 +38,11 @@ public class Modelo {
         }
     }
 
+    public int random() {
+        int number = random.nextInt((100 - 0) + 1);
+        return number;
+    }
+
     public void printPrimos() {
         for (int i = 0; i < numerosPrimos.length; i++) {
             if (numerosPrimos[i] > 0) {

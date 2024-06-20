@@ -4,10 +4,18 @@ public class Funcionario {
 
     private String nome;
     private int ID;
-    private double salario;
+    private double salario, altura;
 
     public Funcionario() {
 
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
     }
 
     public Funcionario(int id, String nome, double salario) {

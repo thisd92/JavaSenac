@@ -17,10 +17,13 @@ public class Exercicios {
         funcionario.setNome(scan.nextLine());
         System.out.println("Digite o salário do funcionário:");
         funcionario.setSalario(scan.nextDouble());
+        System.out.println("Digite a altura do funcionário:");
+        funcionario.setAltura(scan.nextDouble());
 
         System.out.println("Cadsatro de Funcionários:");
         System.out.println("ID: " + funcionario.getID() + "\nNome: "
-                + funcionario.getNome() + "\n" + "Salário: " + funcionario.getSalario());
+                + funcionario.getNome() + "\nSalário: "
+                + funcionario.getSalario() + "\nAltura: " + funcionario.getAltura());
     }
 
 }

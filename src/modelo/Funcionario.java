@@ -1,8 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 public class Funcionario {
 
     private String nome;
@@ -41,11 +38,6 @@ public class Funcionario {
 
     public void setSalario(double salario) {
         this.salario = salario;
-    }
-
-    @Override
-    public String toString() {
-        return "ID: " + ID + "\nNome: " + nome + "\nSalário: " + salario;
     }
 
 }

@@ -42,7 +42,7 @@
                   <Component id="jComboBox1" max="32767" attributes="0"/>
                   <Component id="btnRemove" min="-2" pref="154" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="83" max="32767" attributes="0"/>
@@ -51,23 +51,25 @@
                   <Component id="jLabel7" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btnSorteio" pref="187" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelResult" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="btnSub" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMult" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDiv" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSoma" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelMax" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMin" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnSorteio" pref="187" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="labelResult" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="btnSub" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMult" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDiv" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSoma" min="-2" max="-2" attributes="0"/>
                       <Component id="txtNum1" alignment="0" pref="187" max="32767" attributes="0"/>
                       <Component id="btnClick" alignment="0" pref="187" max="32767" attributes="0"/>
+                      <Component id="txtNum2" alignment="0" pref="187" max="32767" attributes="0"/>
+                      <Component id="labelSorteio" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="txtNum2" alignment="0" pref="187" max="32767" attributes="0"/>
-                  <Component id="labelSorteio" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
           </Group>
@@ -105,7 +107,11 @@
               <Component id="btnSorteio" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="labelSorteio" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="labelMin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labelMax" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtAddList" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -216,6 +222,10 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSorteio">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelMin">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelMax">
     </Component>
   </SubComponents>
 </Form>

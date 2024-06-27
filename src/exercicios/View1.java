@@ -6,12 +6,9 @@
 package exercicios;
 
 import java.awt.Image;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import model.Pessoa;
 
 /**
  *
@@ -44,6 +41,8 @@ public class View1 extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         btnClick = new javax.swing.JButton();
         txtNum1 = new javax.swing.JTextField();
         txtNum2 = new javax.swing.JTextField();
@@ -61,6 +60,8 @@ public class View1 extends javax.swing.JFrame {
         labelResult = new javax.swing.JLabel();
         btnSorteio = new javax.swing.JButton();
         labelSorteio = new javax.swing.JLabel();
+        labelMin = new javax.swing.JLabel();
+        labelMax = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,28 +137,30 @@ public class View1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelResult))
-                    .addComponent(btnSub)
-                    .addComponent(btnMult)
-                    .addComponent(btnDiv)
-                    .addComponent(btnSoma)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelMax)
+                    .addComponent(labelMin)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelResult))
+                        .addComponent(btnSub)
+                        .addComponent(btnMult)
+                        .addComponent(btnDiv)
+                        .addComponent(btnSoma)
                         .addComponent(txtNum1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(btnClick, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                    .addComponent(txtNum2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(labelSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnClick, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(txtNum2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(labelSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
@@ -189,7 +192,11 @@ public class View1 extends javax.swing.JFrame {
                 .addComponent(btnSorteio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelSorteio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelMin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelMax)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAddList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,22 +270,25 @@ public class View1 extends javax.swing.JFrame {
     private void btnSorteioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteioActionPerformed
         // TODO add your handling code here:
         labelSorteio.setText("");
-        ArrayList<Integer> list = sorteioNumeros(Integer.parseInt(txtNum1.getText()));
-        String[] sorteados = {};
-        for (int n : list) {
-            labelSorteio.setText((labelSorteio.getText() + n + " - "));
-        }
+        sorteioNumeros(Integer.parseInt(txtNum1.getText()));
     }//GEN-LAST:event_btnSorteioActionPerformed
 
-    private ArrayList<Integer> sorteioNumeros(int qtdNumeros) {
-        int i = 0;
+    private void sorteioNumeros(int qtdNumeros) {
+        int i = 0, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
         Random r = new Random();
-        ArrayList<Integer> numeros = new ArrayList<>();
         while (i < qtdNumeros) {
-            numeros.add((r.nextInt(100) + 1));
+            int num = (r.nextInt(100) + 1);
+            if (num > max) {
+                max = num;
+            }
+            if (num < min) {
+                min = num;
+            }
+            labelSorteio.setText(labelSorteio.getText() + num + " ");
             i++;
         }
-        return numeros;
+        labelMax.setText(String.valueOf(max));
+        labelMin.setText(String.valueOf(min));
     }
 
     /**
@@ -330,10 +340,14 @@ public class View1 extends javax.swing.JFrame {
     private javax.swing.JButton btnSorteio;
     private javax.swing.JRadioButton btnSub;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelMax;
+    private javax.swing.JLabel labelMin;
     private javax.swing.JLabel labelResult;
     private javax.swing.JLabel labelSorteio;
     private javax.swing.JTextField txtAddList;

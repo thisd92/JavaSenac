@@ -11,12 +11,15 @@ import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import model.Pessoa;
 
 /**
  *
  * @author 200901268
  */
 public class View1 extends javax.swing.JFrame {
+
+    ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
     /**
      * Creates new form View1
@@ -27,10 +30,6 @@ public class View1 extends javax.swing.JFrame {
         setIconImage(icon);
         initComponents();
         setTitle("Exercícios");
-        buttonGroup1.add(btnSoma);
-        buttonGroup1.add(btnSub);
-        buttonGroup1.add(btnMult);
-        buttonGroup1.add(btnDiv);
     }
 
     /**
@@ -46,251 +45,176 @@ public class View1 extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         btnClick = new javax.swing.JButton();
-        txtNum1 = new javax.swing.JTextField();
-        txtNum2 = new javax.swing.JTextField();
-        txtAddList = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        btnAdd = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
-        btnSoma = new javax.swing.JRadioButton();
-        btnSub = new javax.swing.JRadioButton();
-        btnMult = new javax.swing.JRadioButton();
-        btnDiv = new javax.swing.JRadioButton();
+        txtRG = new javax.swing.JTextField();
+        txtCPF = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         labelResult = new javax.swing.JLabel();
-        btnSorteio = new javax.swing.JButton();
         labelSorteio = new javax.swing.JLabel();
         labelMin = new javax.swing.JLabel();
         labelMax = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(0, 0));
 
-        btnClick.setText("Calcular");
+        btnClick.setText("Cadastrar");
         btnClick.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClickActionPerformed(evt);
             }
         });
 
-        txtNum1.addActionListener(new java.awt.event.ActionListener() {
+        txtRG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNum1ActionPerformed(evt);
+                txtRGActionPerformed(evt);
             }
         });
-        txtNum1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNum1KeyTyped(evt);
+                txtRGKeyTyped(evt);
             }
         });
 
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCPFKeyTyped(evt);
             }
         });
 
-        btnAdd.setText("Acrescentar");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+        jLabel1.setText("RG");
+
+        jLabel7.setText("CPF");
+
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomeKeyTyped(evt);
             }
         });
 
-        btnRemove.setText("Deletar");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Nome");
 
-        btnSoma.setText("Somar");
-
-        btnSub.setText("Subtrair");
-        btnSub.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubActionPerformed(evt);
-            }
-        });
-
-        btnMult.setText("Multiplicar");
-
-        btnDiv.setText("Dividir");
-
-        jLabel1.setText("Numero 1");
-
-        jLabel7.setText("Número 2");
-
-        jLabel2.setText("Resutado: ");
-
-        btnSorteio.setText("Sortear");
-        btnSorteio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSorteioActionPerformed(evt);
-            }
-        });
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtAddList, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(61, 61, 61)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelMax)
                     .addComponent(labelMin)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(labelResult))
-                        .addComponent(btnSub)
-                        .addComponent(btnMult)
-                        .addComponent(btnDiv)
-                        .addComponent(btnSoma)
-                        .addComponent(txtNum1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(btnClick, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(txtNum2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(labelSorteio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(138, 138, 138))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(labelResult))
+                    .addComponent(labelSorteio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtRG)
+                    .addComponent(txtCPF)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClick, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNum1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNum2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSoma)
-                .addGap(2, 2, 2)
-                .addComponent(btnSub)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnMult)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDiv)
-                .addGap(18, 18, 18)
-                .addComponent(btnClick)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(labelResult))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSorteio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(277, 277, 277)
+                .addComponent(labelResult)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelSorteio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelMin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelMax)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addContainerGap(247, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAddList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnRemove))
-                .addGap(74, 74, 74))
+                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addComponent(btnClick)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClickActionPerformed
-        // TODO add your handling code here:
-        try {
-            int resultado = 0;
-            if (btnSoma.isSelected()) {
-                resultado = Integer.parseInt(txtNum1.getText()) + Integer.parseInt(txtNum2.getText());
-                labelResult.setText(String.valueOf(resultado));
-            } else if (btnSub.isSelected()) {
-                resultado = Integer.parseInt(txtNum1.getText()) - Integer.parseInt(txtNum2.getText());
-                labelResult.setText(String.valueOf(resultado));
-            } else if (btnMult.isSelected()) {
-                resultado = Integer.parseInt(txtNum1.getText()) * Integer.parseInt(txtNum2.getText());
-                labelResult.setText(String.valueOf(resultado));
-            } else if (btnDiv.isSelected()) {
-                try {
-                    resultado = Integer.parseInt(txtNum1.getText()) / Integer.parseInt(txtNum2.getText());
-                    labelResult.setText(String.valueOf(resultado));
-                } catch (ArithmeticException e) {
-                    JOptionPane.showMessageDialog(this, "Erro: número divido por 0");
-                }
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Caracter inválido ou\nPreencha todos os campos!");
-        }
-        
-
+        Pessoa p = new Pessoa();
+        p.setNome(txtNome.getText());
+        p.setRg(txtRG.getText());
+        p.setCpf(txtCPF.getText());
+        listaPessoas.add(p);
+        printPessoas();
     }//GEN-LAST:event_btnClickActionPerformed
 
-    private void txtNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNum1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNum1ActionPerformed
-    
+    private void printPessoas() {
+        StringBuilder sb = new StringBuilder();
+        for (Pessoa p : listaPessoas) {
+            sb.append("Nome: " + p.getNome() + "\n");
+            sb.append("CPF: " + p.getCpf() + "\n");
+            sb.append("RG: " + p.getRg() + "\n\n");
+        }
+        jTextArea1.setText(sb.toString());
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        String nome = txtAddList.getText();
-        jComboBox1.addItem(nome);
-        jComboBox1.setSelectedIndex((jComboBox1.getItemCount() - 1));
-        jComboBox1.showPopup();
-        txtAddList.setText("");
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+    private void txtRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRGActionPerformed
         // TODO add your handling code here:
-        jComboBox1.removeItemAt(jComboBox1.getSelectedIndex());
-    }//GEN-LAST:event_btnRemoveActionPerformed
+    }//GEN-LAST:event_txtRGActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-        String itemSelecionado = (String) jComboBox1.getSelectedItem();
-        txtAddList.setText(itemSelecionado);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void btnSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSubActionPerformed
-
-    private void btnSorteioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSorteioActionPerformed
-        // TODO add your handling code here:
-        labelSorteio.setText("");
-        sorteioNumeros(Integer.parseInt(txtNum1.getText()));
-    }//GEN-LAST:event_btnSorteioActionPerformed
-
-    private void txtNum1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNum1KeyTyped
+    private void txtRGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
-            txtNum1.setBackground(Color.red);
-        } else {
-            txtNum1.setBackground(Color.white);
         }
-    }//GEN-LAST:event_txtNum1KeyTyped
-    
+    }//GEN-LAST:event_txtRGKeyTyped
+
+    private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNomeKeyTyped
+
+    private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCPFKeyTyped
+
     private void sorteioNumeros(int qtdNumeros) {
         int i = 0, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
         Random r = new Random();
@@ -349,27 +273,21 @@ public class View1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClick;
-    private javax.swing.JRadioButton btnDiv;
-    private javax.swing.JRadioButton btnMult;
-    private javax.swing.JButton btnRemove;
-    private javax.swing.JRadioButton btnSoma;
-    private javax.swing.JButton btnSorteio;
-    private javax.swing.JRadioButton btnSub;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelMax;
     private javax.swing.JLabel labelMin;
     private javax.swing.JLabel labelResult;
     private javax.swing.JLabel labelSorteio;
-    private javax.swing.JTextField txtAddList;
-    private javax.swing.JTextField txtNum1;
-    private javax.swing.JTextField txtNum2;
+    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtRG;
     // End of variables declaration//GEN-END:variables
 }

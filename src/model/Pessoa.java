@@ -10,19 +10,17 @@ package model;
  * @author 200901268
  */
 public class Pessoa {
-    
-    private String nome, cpf, rg, sexo;
-    private int idade;
+
+    private String nome, cpf, rg;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String rg, String sexo, int idade) {
+    public Pessoa(String nome, String cpf, String rg) {
         this.nome = nome;
         this.cpf = cpf;
         this.rg = rg;
-        this.sexo = sexo;
-        this.idade = idade;
+
     }
 
     public String getNome() {
@@ -49,26 +47,9 @@ public class Pessoa {
         this.rg = rg;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
     @Override
     public String toString() {
-        return "Nome: " + nome + "\nIdade: " + idade + "\nCPF: " + cpf + "\nRG: " + rg + "\nSexo: " + sexo;
+        return "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg;
     }
-    
-    
+
 }

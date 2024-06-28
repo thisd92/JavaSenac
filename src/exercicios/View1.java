@@ -5,7 +5,9 @@
  */
 package exercicios;
 
+import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -75,6 +77,11 @@ public class View1 extends javax.swing.JFrame {
         txtNum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNum1ActionPerformed(evt);
+            }
+        });
+        txtNum1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNum1KeyTyped(evt);
             }
         });
 
@@ -232,16 +239,16 @@ public class View1 extends javax.swing.JFrame {
                 }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!");
+            JOptionPane.showMessageDialog(this, "Caracter inválido ou\nPreencha todos os campos!");
         }
-
+        
 
     }//GEN-LAST:event_btnClickActionPerformed
 
     private void txtNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNum1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNum1ActionPerformed
-
+    
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
@@ -273,6 +280,17 @@ public class View1 extends javax.swing.JFrame {
         sorteioNumeros(Integer.parseInt(txtNum1.getText()));
     }//GEN-LAST:event_btnSorteioActionPerformed
 
+    private void txtNum1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNum1KeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+            txtNum1.setBackground(Color.red);
+        } else {
+            txtNum1.setBackground(Color.white);
+        }
+    }//GEN-LAST:event_txtNum1KeyTyped
+    
     private void sorteioNumeros(int qtdNumeros) {
         int i = 0, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
         Random r = new Random();

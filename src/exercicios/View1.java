@@ -7,7 +7,10 @@ package exercicios;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import model.Pessoa;
 
 /**
@@ -74,7 +77,7 @@ public class View1 extends javax.swing.JFrame {
         tbCadastro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "Nome", "CPF", "RG"
+                "Nome", "CPF", "RG", "Numero Sorteado", "Status"
             }));
             jScrollPane1.setViewportView(tbCadastro);
 
@@ -135,16 +138,27 @@ public class View1 extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
         if (model.getRowCount() < 4) {
+            TableColumn statusColumn = tbCadastro.getColumnModel().getColumn(4);
+            JComboBox comboBox = new JComboBox();
+            comboBox.addItem("Ativo");
+            comboBox.addItem("Desativado");
+            statusColumn.setCellEditor(new DefaultCellEditor(comboBox));
             Pessoa p = new Pessoa();
             p.setNome(txtNome.getText());
             p.setCpf(txtCPF.getText());
             p.setRg(txtRG.getText());
-            model.addRow(new Object[]{p.getNome(), p.getCpf(), p.getRg()});
+            int numSorteado = (int) (Math.random() * 100 + 1);
+            model.addRow(new Object[]{p.getNome(), p.getCpf(), p.getRg(), numSorteado, "Ativo"});
             limparCampos();
-        } else {
-            btnCadastrar.setEnabled(false);
+            verificaStatusBtn();
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    public void verificaStatusBtn() {
+        if (model.getRowCount() >= 4) {
+            btnCadastrar.setEnabled(false);
+        }
+    }
 
     public void limparCampos() {
         txtNome.setText("");

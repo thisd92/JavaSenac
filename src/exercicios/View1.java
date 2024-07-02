@@ -5,12 +5,9 @@
  */
 package exercicios;
 
-import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Random;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import model.Pessoa;
 
 /**
@@ -19,17 +16,13 @@ import model.Pessoa;
  */
 public class View1 extends javax.swing.JFrame {
 
-    ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    List<Pessoa> lista;
+    DefaultTableModel model;
 
-    /**
-     * Creates new form View1
-     */
     public View1() {
-        ImageIcon image = new ImageIcon(getClass().getResource("/resources/icon.png"));
-        Image icon = image.getImage();
-        setIconImage(icon);
         initComponents();
-        setTitle("Exercícios");
+        model = (DefaultTableModel) tbCadastro.getModel();
+        lista = new ArrayList<>();
     }
 
     /**
@@ -41,41 +34,21 @@ public class View1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        btnClick = new javax.swing.JButton();
-        txtRG = new javax.swing.JTextField();
-        txtCPF = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        labelResult = new javax.swing.JLabel();
-        labelSorteio = new javax.swing.JLabel();
-        labelMin = new javax.swing.JLabel();
-        labelMax = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JTextField();
+        txtRG = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        tbCadastro = new javax.swing.JTable();
+        lbNome = new javax.swing.JLabel();
+        lbCPF = new javax.swing.JLabel();
+        lbRG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(0, 0));
 
-        btnClick.setText("Cadastrar");
-        btnClick.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClickActionPerformed(evt);
-            }
-        });
-
-        txtRG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRGActionPerformed(evt);
-            }
-        });
-        txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRGKeyTyped(evt);
+                txtNomeKeyTyped(evt);
             }
         });
 
@@ -85,119 +58,99 @@ public class View1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("RG");
-
-        jLabel7.setText("CPF");
-
-        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNomeKeyTyped(evt);
+                txtRGKeyTyped(evt);
             }
         });
 
-        jLabel3.setText("Nome");
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        tbCadastro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {},
+            new String [] {
+                "Nome", "CPF", "RG"
+            }));
+            jScrollPane1.setViewportView(tbCadastro);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelMax)
-                    .addComponent(labelMin)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(labelResult))
-                    .addComponent(labelSorteio, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtRG)
-                    .addComponent(txtCPF)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnClick, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(labelResult)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelSorteio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelMin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelMax)
-                .addContainerGap(247, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addComponent(btnClick)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                .addGap(27, 27, 27))
-        );
+            lbNome.setText("Nome");
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+            lbCPF.setText("CPF");
 
-    private void btnClickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClickActionPerformed
-        Pessoa p = new Pessoa();
-        p.setNome(txtNome.getText());
-        p.setRg(txtRG.getText());
-        p.setCpf(txtCPF.getText());
-        listaPessoas.add(p);
-        printPessoas();
-    }//GEN-LAST:event_btnClickActionPerformed
+            lbRG.setText("RG");
 
-    private void printPessoas() {
-        StringBuilder sb = new StringBuilder();
-        for (Pessoa p : listaPessoas) {
-            sb.append("Nome: " + p.getNome() + "\n");
-            sb.append("CPF: " + p.getCpf() + "\n");
-            sb.append("RG: " + p.getRg() + "\n\n");
+            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(53, 53, 53)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(122, 122, 122)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbNome)
+                                .addComponent(lbCPF)
+                                .addComponent(lbRG))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNome)
+                                .addComponent(txtCPF)
+                                .addComponent(txtRG)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))))
+                    .addContainerGap(58, Short.MAX_VALUE))
+            );
+            layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(34, 34, 34)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbNome))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbCPF))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbRG))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnCadastrar)
+                    .addGap(18, 18, 18)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(22, Short.MAX_VALUE))
+            );
+
+            pack();
+        }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
+        if (model.getRowCount() < 4) {
+            Pessoa p = new Pessoa();
+            p.setNome(txtNome.getText());
+            p.setCpf(txtCPF.getText());
+            p.setRg(txtRG.getText());
+            model.addRow(new Object[]{p.getNome(), p.getCpf(), p.getRg()});
+            limparCampos();
+        } else {
+            btnCadastrar.setEnabled(false);
         }
-        jTextArea1.setText(sb.toString());
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    public void limparCampos() {
+        txtNome.setText("");
+        txtCPF.setText("");
+        txtRG.setText("");
     }
-
-    private void txtRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRGActionPerformed
-
-
-    private void txtRGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtRGKeyTyped
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
         // TODO add your handling code here:
@@ -205,6 +158,7 @@ public class View1 extends javax.swing.JFrame {
         if (Character.isDigit(c)) {
             evt.consume();
         }
+
     }//GEN-LAST:event_txtNomeKeyTyped
 
     private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
@@ -213,25 +167,22 @@ public class View1 extends javax.swing.JFrame {
         if (!Character.isDigit(c)) {
             evt.consume();
         }
+        if (txtCPF.getText().length() >= 11) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtCPFKeyTyped
 
-    private void sorteioNumeros(int qtdNumeros) {
-        int i = 0, max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
-        Random r = new Random();
-        while (i < qtdNumeros) {
-            int num = (r.nextInt(100) + 1);
-            if (num > max) {
-                max = num;
-            }
-            if (num < min) {
-                min = num;
-            }
-            labelSorteio.setText(labelSorteio.getText() + num + " ");
-            i++;
+    private void txtRGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
         }
-        labelMax.setText(String.valueOf(max));
-        labelMin.setText(String.valueOf(min));
-    }
+
+        if (txtRG.getText().length() >= 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRGKeyTyped
 
     /**
      * @param args the command line arguments
@@ -250,17 +201,13 @@ public class View1 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View1.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View1.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View1.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View1.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -273,19 +220,12 @@ public class View1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnClick;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel labelMax;
-    private javax.swing.JLabel labelMin;
-    private javax.swing.JLabel labelResult;
-    private javax.swing.JLabel labelSorteio;
+    private javax.swing.JLabel lbCPF;
+    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel lbRG;
+    private javax.swing.JTable tbCadastro;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRG;

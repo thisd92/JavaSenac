@@ -7,10 +7,7 @@ package exercicios;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import model.Pessoa;
 
 /**
@@ -21,11 +18,13 @@ public class View1 extends javax.swing.JFrame {
 
     List<Pessoa> lista;
     DefaultTableModel model;
+    int[] numerosSorteados = new int[5];
 
     public View1() {
         initComponents();
         model = (DefaultTableModel) tbCadastro.getModel();
         lista = new ArrayList<>();
+
     }
 
     /**
@@ -38,14 +37,14 @@ public class View1 extends javax.swing.JFrame {
     private void initComponents() {
 
         txtNome = new javax.swing.JTextField();
-        txtCPF = new javax.swing.JTextField();
-        txtRG = new javax.swing.JTextField();
+        txtPalpite = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbCadastro = new javax.swing.JTable();
         lbNome = new javax.swing.JLabel();
         lbCPF = new javax.swing.JLabel();
-        lbRG = new javax.swing.JLabel();
+        lblSorteio = new javax.swing.JLabel();
+        btnSortear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,15 +54,9 @@ public class View1 extends javax.swing.JFrame {
             }
         });
 
-        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPalpite.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCPFKeyTyped(evt);
-            }
-        });
-
-        txtRG.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRGKeyTyped(evt);
+                txtPalpiteKeyTyped(evt);
             }
         });
 
@@ -77,38 +70,45 @@ public class View1 extends javax.swing.JFrame {
         tbCadastro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
-                "Nome", "CPF", "RG", "Numero Sorteado", "Status"
+                "Nome", "Palpite", "Diferença", "Sorteado Próximo"
             }));
             jScrollPane1.setViewportView(tbCadastro);
 
             lbNome.setText("Nome");
 
-            lbCPF.setText("CPF");
+            lbCPF.setText("Palpite");
 
-            lbRG.setText("RG");
+            lblSorteio.setText("jLabel1");
+
+            btnSortear.setText("Sortear");
+            btnSortear.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnSortearActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(48, 48, 48))
                 .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(53, 53, 53)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(122, 122, 122)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lbNome)
-                                .addComponent(lbCPF)
-                                .addComponent(lbRG))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNome)
-                                .addComponent(txtCPF)
-                                .addComponent(txtRG)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))))
-                    .addContainerGap(58, Short.MAX_VALUE))
+                    .addGap(122, 122, 122)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbNome)
+                        .addComponent(lbCPF))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSortear, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                        .addComponent(lblSorteio)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome)
+                            .addComponent(txtPalpite)
+                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                    .addContainerGap(196, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,17 +119,17 @@ public class View1 extends javax.swing.JFrame {
                         .addComponent(lbNome))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPalpite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbCPF))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbRG))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(btnCadastrar)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(btnSortear)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(lblSorteio)
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(22, Short.MAX_VALUE))
+                    .addGap(30, 30, 30))
             );
 
             pack();
@@ -137,33 +137,25 @@ public class View1 extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        if (model.getRowCount() < 4) {
-            TableColumn statusColumn = tbCadastro.getColumnModel().getColumn(4);
-            JComboBox comboBox = new JComboBox();
-            comboBox.addItem("Ativo");
-            comboBox.addItem("Desativado");
-            statusColumn.setCellEditor(new DefaultCellEditor(comboBox));
-            Pessoa p = new Pessoa();
-            p.setNome(txtNome.getText());
-            p.setCpf(txtCPF.getText());
-            p.setRg(txtRG.getText());
-            int numSorteado = (int) (Math.random() * 100 + 1);
-            model.addRow(new Object[]{p.getNome(), p.getCpf(), p.getRg(), numSorteado, "Ativo"});
-            limparCampos();
-            verificaStatusBtn();
-        }
+        Pessoa p = new Pessoa();
+        p.setNome(txtNome.getText());
+        p.setPalpite(Integer.parseInt(txtPalpite.getText()));
+
+        model.addRow(new Object[]{p.getNome(), p.getPalpite()});
+        limparCampos();
+        verificaStatusBtn();
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     public void verificaStatusBtn() {
-        if (model.getRowCount() >= 4) {
+        if (model.getRowCount() >= 10) {
             btnCadastrar.setEnabled(false);
         }
     }
 
     public void limparCampos() {
         txtNome.setText("");
-        txtCPF.setText("");
-        txtRG.setText("");
+        txtPalpite.setText("");
     }
 
     private void txtNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyTyped
@@ -175,28 +167,70 @@ public class View1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtNomeKeyTyped
 
-    private void txtCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyTyped
+    private void txtPalpiteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPalpiteKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
         }
-        if (txtCPF.getText().length() >= 11) {
+        if (txtPalpite.getText().length() >= 11) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtCPFKeyTyped
+    }//GEN-LAST:event_txtPalpiteKeyTyped
 
-    private void txtRGKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRGKeyTyped
+    private void btnSortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSortearActionPerformed
         // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
+        int i = 0;
+        while (i < numerosSorteados.length) {
+            int numSorteado = (int) (Math.random() * 100 + 1);
+            numerosSorteados[i] = numSorteado;
+            i++;
         }
+        ordenar();
 
-        if (txtRG.getText().length() >= 10) {
-            evt.consume();
+        // Mostrar os números sorteados no lblSorteio
+        StringBuilder sorteioText = new StringBuilder();
+        for (int num : numerosSorteados) {
+            sorteioText.append(num).append("   ");
         }
-    }//GEN-LAST:event_txtRGKeyTyped
+        lblSorteio.setText(sorteioText.toString().trim());
+
+        // Percorrer as linhas da tabela e calcular a diferença
+        for (int j = 0; j < model.getRowCount(); j++) {
+            int palpite = Integer.parseInt(model.getValueAt(j, 1).toString());
+            int[] diferencaInfo = calcularDiferenca(palpite);
+            int diferenca = diferencaInfo[0];
+            int numeroProximo = diferencaInfo[1];
+            model.setValueAt(diferenca, j, 2);
+            model.setValueAt(numeroProximo, j, 3);
+        }
+    }//GEN-LAST:event_btnSortearActionPerformed
+
+    private void ordenar() {
+        int temp;
+        for (int j = 1; j <= 5; j++) {
+            for (int i = 0; i < 5 - 1; i++) {
+                if (numerosSorteados[i] > numerosSorteados[i + 1]) {
+                    temp = numerosSorteados[i];
+                    numerosSorteados[i] = numerosSorteados[i + 1];
+                    numerosSorteados[i + 1] = temp;
+                }
+            }
+        }
+    }
+
+    private int[] calcularDiferenca(int valor) {
+        int diferencaMinima = Integer.MAX_VALUE;
+        int numeroProximo = -1;
+        for (int numero : numerosSorteados) {
+            int diferenca = Math.abs(numero - valor);
+            if (diferenca < diferencaMinima) {
+                diferencaMinima = diferenca;
+                numeroProximo = numero;
+            }
+        }
+        return new int[]{diferencaMinima, numeroProximo};
+    }
 
     /**
      * @param args the command line arguments
@@ -235,13 +269,13 @@ public class View1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnSortear;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCPF;
     private javax.swing.JLabel lbNome;
-    private javax.swing.JLabel lbRG;
+    private javax.swing.JLabel lblSorteio;
     private javax.swing.JTable tbCadastro;
-    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtRG;
+    private javax.swing.JTextField txtPalpite;
     // End of variables declaration//GEN-END:variables
 }

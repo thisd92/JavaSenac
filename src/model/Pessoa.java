@@ -14,15 +14,15 @@ import java.util.List;
  */
 public class Pessoa {
     
-    private String nome, cpf, rg;
+    private String nome;
+    private int palpite;
     
     public Pessoa() {
     }
     
-    public Pessoa(String nome, String cpf, String rg) {
+    public Pessoa(String nome, int palpite) {
         this.nome = nome;
-        this.cpf = cpf;
-        this.rg = rg;
+        this.palpite = palpite;
         
     }
     
@@ -33,26 +33,20 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public String getCpf() {
-        return cpf;
+
+    public int getPalpite() {
+        return palpite;
     }
-    
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+
+    public void setPalpite(int palpite) {
+        this.palpite = palpite;
     }
-    
-    public String getRg() {
-        return rg;
-    }
-    
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-    
+
     @Override
     public String toString() {
-        return "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg;
+        return "Pessoa{" + "nome=" + nome + ", palpite=" + palpite + '}';
     }
+    
+    
     
 }

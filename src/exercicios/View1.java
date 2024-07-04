@@ -7,6 +7,7 @@ package exercicios;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pessoa;
 
@@ -45,6 +46,8 @@ public class View1 extends javax.swing.JFrame {
         lbCPF = new javax.swing.JLabel();
         lblSorteio = new javax.swing.JLabel();
         btnSortear = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,13 +75,16 @@ public class View1 extends javax.swing.JFrame {
             new String [] {
                 "Nome", "Palpite", "Diferença", "Sorteado Próximo"
             }));
+            tbCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    tbCadastroMouseClicked(evt);
+                }
+            });
             jScrollPane1.setViewportView(tbCadastro);
 
             lbNome.setText("Nome");
 
             lbCPF.setText("Palpite");
-
-            lblSorteio.setText("jLabel1");
 
             btnSortear.setText("Sortear");
             btnSortear.addActionListener(new java.awt.event.ActionListener() {
@@ -87,28 +93,47 @@ public class View1 extends javax.swing.JFrame {
                 }
             });
 
+            btnAtualizar.setText("Atualizar Linha");
+            btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnAtualizarActionPerformed(evt);
+                }
+            });
+
+            btnDeletar.setText("Deletar Linha");
+            btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btnDeletarActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(48, 48, 48))
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(122, 122, 122)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lbNome)
-                        .addComponent(lbCPF))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnSortear, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                        .addComponent(lblSorteio)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome)
-                            .addComponent(txtPalpite)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
-                    .addContainerGap(196, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(122, 122, 122)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbNome)
+                                .addComponent(lbCPF))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnSortear, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                .addComponent(lblSorteio)
+                                .addComponent(txtNome)
+                                .addComponent(txtPalpite)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(55, 55, 55)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addContainerGap(56, Short.MAX_VALUE))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,13 +148,17 @@ public class View1 extends javax.swing.JFrame {
                         .addComponent(lbCPF))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(btnCadastrar)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
                     .addComponent(btnSortear)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(lblSorteio)
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(30, 30, 30))
+                    .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAtualizar)
+                        .addComponent(btnDeletar))
+                    .addContainerGap(51, Short.MAX_VALUE))
             );
 
             pack();
@@ -196,15 +225,62 @@ public class View1 extends javax.swing.JFrame {
         lblSorteio.setText(sorteioText.toString().trim());
 
         // Percorrer as linhas da tabela e calcular a diferença
-        for (int j = 0; j < model.getRowCount(); j++) {
-            int palpite = Integer.parseInt(model.getValueAt(j, 1).toString());
-            int[] diferencaInfo = calcularDiferenca(palpite);
-            int diferenca = diferencaInfo[0];
-            int numeroProximo = diferencaInfo[1];
-            model.setValueAt(diferenca, j, 2);
-            model.setValueAt(numeroProximo, j, 3);
-        }
+        atualizarDiferencas();
+
     }//GEN-LAST:event_btnSortearActionPerformed
+
+    private void atualizarDiferencas() {
+        if (vetorPreenchido()) {
+            for (int j = 0; j < model.getRowCount(); j++) {
+                int palpite = Integer.parseInt(model.getValueAt(j, 1).toString());
+                int[] diferencaInfo = calcularDiferenca(palpite);
+                int diferenca = diferencaInfo[0];
+                int numeroProximo = diferencaInfo[1];
+                model.setValueAt(diferenca, j, 2);
+                model.setValueAt(numeroProximo, j, 3);
+            }
+        }
+    }
+
+    private boolean vetorPreenchido() {
+        for (int num : numerosSorteados) {
+            if (num == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        // TODO add your handling code here:
+        try {
+            int linha = tbCadastro.getSelectedRow();
+            model.setValueAt(txtNome.getText(), linha, 0);
+            model.setValueAt(txtPalpite.getText(), linha, 1);
+            tbCadastro.clearSelection();
+            limparCampos();
+            atualizarDiferencas();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Não foi selecionada nenhuma linha");
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        // TODO add your handling code here:
+        try {
+            model.removeRow(tbCadastro.getSelectedRow());
+            limparCampos();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Não foi selecionada nenhuma linha");
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void tbCadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCadastroMouseClicked
+        // TODO add your handling code here:
+        int linha = tbCadastro.getSelectedRow();
+        txtNome.setText(String.valueOf(model.getValueAt(linha, 0)));
+        txtPalpite.setText(String.valueOf(model.getValueAt(linha, 1)));
+    }//GEN-LAST:event_tbCadastroMouseClicked
 
     private void ordenar() {
         int temp;
@@ -268,7 +344,9 @@ public class View1 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnSortear;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbCPF;

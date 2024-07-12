@@ -24,17 +24,28 @@ public abstract class Conexao {
         this.conexao = DriverManager.getConnection(url, usuario, senha);
     }
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException, ClassNotFoundException {
+        if (this.conexao == null || this.conexao.isClosed()) {
+            conectar();
+        }
         return this.conexao;
     }
 
     public void fecharConexao() {
-        if (conexao != null) {
+        if (this.conexao != null) {
             try {
-                conexao.close();
+                this.conexao.close();
+                this.conexao = null;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void conectar() throws ClassNotFoundException, SQLException {
+        if (this.conexao == null || this.conexao.isClosed()) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.conexao = DriverManager.getConnection(this.url, this.usuario, this.senha);
         }
     }
 
